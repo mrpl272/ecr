@@ -13,3 +13,6 @@ jobs:
     steps:
       - name: My Step
         run: echo "Hello World"
+        
+      - name: Checkout code
+        uses: actions/checkout@v2
