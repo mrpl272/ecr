@@ -1,4 +1,5 @@
 FROM openjdk:11
 
+CMD CD build/libs
 
-CMD java -cp build/libs/ecr.jar App
+CMD java -cp ecr.jar App
