@@ -36,6 +36,7 @@ jobs:
           
       - name: List JAR file
         run: |
+          ls
           ls build/libs/
           pwd
 
