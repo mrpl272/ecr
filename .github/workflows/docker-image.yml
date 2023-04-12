@@ -52,9 +52,13 @@ jobs:
         run: |
           docker build -t myapp:latest .
           export ECR_REPO_NAME=$(docker inspect --format='{{index .RepoTags 0}}' myapp:latest)
-          echo "ECR_REPO_NAME=$ECR_REPO_NAME" >> $GITHUB_ENV
+          echo "ECR_REPO_NAME=$ECR_REPO_NAME"
           docker run $ECR_REPO_NAME
           aws ecr create-repository --repository-name myapp --region us-east-1 --image-scanning-configuration scanOnPush=true
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          docker tag myapp:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/myapp:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/myapp:latest
+
 
 
       
