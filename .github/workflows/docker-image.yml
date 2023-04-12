@@ -33,7 +33,13 @@ jobs:
       - name: Build JAR file
         run: |
           gradle build
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-accsess-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secret.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
           
-      - name: login to aws ECR
-        id: login-ecr
-        uses: aws-actioins/amazon-ecr-login@v1
+  
+    
