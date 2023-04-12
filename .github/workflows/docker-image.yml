@@ -32,4 +32,4 @@ jobs:
           
       - name: Build JAR file
         run: |
-          ./gradlew build
+          gradle build
