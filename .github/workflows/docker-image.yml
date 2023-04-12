@@ -52,7 +52,7 @@ jobs:
         run: |
           docker build -t myapp:latest .
           export ECR_REPO_NAME=$(docker inspect --format='{{index .RepoTags 0}}' myapp:latest)
-          echo "ECR_REPO_NAME=$ECR_REPO_NAME" 
+          echo "ECR_REPO_NAME=$ECR_REPO_NAME" >> $GITHUB_ENV
           docker run $ECR_REPO_NAME
           aws ecr create-repository --repository-name $(ECR_REPO_NAME) --region us-east-1 --image-scanning-configuration scanOnPush=true
 
