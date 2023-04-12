@@ -57,7 +57,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/myapp:latest
+          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/myapp:latest
 
       - name: Deploy to ECS
         run: |
