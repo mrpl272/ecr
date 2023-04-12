@@ -1,5 +1,5 @@
 FROM openjdk:11
 
-CMD CD build/libs
+COPY build/libs/ecr.jar .
 
-CMD java -cp ecr.jar App
+CMD java -cp app.jar gradle.learn.App
