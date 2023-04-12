@@ -51,7 +51,7 @@ jobs:
           docker build -t myapp:latest .
           export ECR_REPO_NAME=$(docker inspect --format='{{index .RepoTags 0}}' myapp:latest)
           echo "ECR_REPO_NAME=$ECR_REPO_NAME"
-          docker run ECR_REPO_NAME
+          docker run ${{ env.ECR_REPO_NAME }}
 
   
     
