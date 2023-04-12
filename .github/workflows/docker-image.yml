@@ -77,12 +77,8 @@ jobs:
           ecs-cli compose service up --cluster my-ecs-cluster1 --region ${AWS_REGION}
 
       - name: Deploy to ECS
-        uses: docker://amazon/amazon-ecs-deploy:1.3.0
-        with:
-          cluster: my-ecs-cluster1
-          service: my-ecs-service
-          image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/myapp:latest
-
+        run: |
+          aws ecs update-service --cluster my-ecs-cluster --service my-ecs-service --force-new-deployment --region ${{ secrets.AWS_REGION }}
 
       
 
