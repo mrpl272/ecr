@@ -37,6 +37,7 @@ jobs:
       - name: List JAR file
         run: |
           ls build/libs/
+          pwd
 
       
       - name: Configure AWS Credentials
