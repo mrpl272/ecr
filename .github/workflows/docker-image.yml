@@ -33,3 +33,12 @@ jobs:
       - name: Build JAR file
         run: |
           gradle build
+          
+      - name: Build and push Docker image to ECR
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
+        env:
+          ECR_REGISTRY: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
+          ECR_REPOSITORY: <ECR_REPOSITORY_NAME>
+          IMAGE_TAG: ${{ github.sha }}
