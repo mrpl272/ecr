@@ -1,5 +1,3 @@
-package gradle.learn;
-
 public class App {
     public String getGreeting() {
         return "Hello World!";
