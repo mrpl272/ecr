@@ -61,6 +61,8 @@ jobs:
           
       - name: Create ECS cluster
         run: |
+          sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+          sudo chmod +x /usr/local/bin/ecs-cli
           ecs-cli up --capability-iam --size 1 --instance-type t2.micro --cluster my-ecs-cluster --region ${AWS_REGION}
 
 
