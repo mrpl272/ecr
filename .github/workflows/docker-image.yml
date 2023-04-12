@@ -70,11 +70,20 @@ jobs:
         run: |
           sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
           sudo chmod +x /usr/local/bin/ecs-cli
-          ecs-cli up --capability-iam --size 1 --instance-type t2.micro --cluster my-ecs-cluster123 --region ${AWS_REGION}
+          ecs-cli up --capability-iam --size 1 --instance-type t2.micro --cluster my-ecs-cluster1234 --region ${AWS_REGION}
+      
+      - name: Create ECS cluster
+        run: |
+          aws ecs create-service \
+            --cluster my-ecs-cluster1234 \
+            --service-name my-ecs-service \
+            --task-definition my-ecs-task-definition \
+            --desired-count 1 \
+            --launch-type EC2   
 
       - name: Deploy to ECS
         run: |
-          aws ecs update-service --cluster my-ecs-cluster --service my-ecs-service --force-new-deployment --region ${AWS_REGION}
+          aws ecs update-service --cluster my-ecs-cluster1234 --service my-ecs-service --force-new-deployment --region ${AWS_REGION}
 
       
 
