@@ -81,6 +81,7 @@ jobs:
             --desired-count 1 \
             --launch-type EC2   
 
+
       - name: Deploy to ECS
         run: |
           aws ecs update-service --cluster my-ecs-cluster12345 --service my-ecs-service --force-new-deployment --region ${AWS_REGION}
